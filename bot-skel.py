@@ -8,8 +8,7 @@ import random       # dumb random number generator
 import argparse
  
 from discord.ext import commands    # Bot class and utils
-BOT_TOKEN="MTMxMjAwMjkzNTg5NDU3MzA3Ng.G_sKjo.nrdbp-O-4Av3TLzZUwzStr9BG4KdWcK9rgpJt0"
- 
+
 ################################################################################
 ############################### HELPER FUNCTIONS ###############################
 ################################################################################
