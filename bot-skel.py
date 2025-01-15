@@ -5,6 +5,7 @@ import code         # code.interact
 import os           # environment variables
 import inspect      # call stack inspection
 import random       # dumb random number generator
+import argparse
  
 from discord.ext import commands    # Bot class and utils
 BOT_TOKEN="MTMxMjAwMjkzNTg5NDU3MzA3Ng.G_sKjo.nrdbp-O-4Av3TLzZUwzStr9BG4KdWcK9rgpJt0"
@@ -138,11 +139,25 @@ async def roll_error(ctx, error):
 ############################# PROGRAM ENTRY POINT ##############################
 ################################################################################
  
+def parse_args():
+
+    parser = argparse.ArgumentParser(description="Music Bot Command Line Argument Parser")
+    parser.add_argument(
+        "-t", "--token",
+        type=str,
+        help="Bot token to authenticate with Discord."
+    )
+    return parser.parse_args()
+
 if __name__ == '__main__':
-    # check that token exists in environment
-    if 'BOT_TOKEN' not in os.environ:
-        log_msg('save your token in the BOT_TOKEN env variable!', 'error')
+    # Parse command-line arguments
+    args = parse_args()
+
+    # Check for token from command-line arguments or environment variable
+    token = args.token or os.getenv('BOT_TOKEN')
+    if not token:
+        log_msg('save your token in the BOT_TOKEN env variable or pass it with -t/--token!', 'error')
         exit(-1)
- 
-    # launch bot (blocking operation)
-    bot.run(os.environ['BOT_TOKEN'])
+
+    # Launch bot (blocking operation)
+    bot.run(token)
