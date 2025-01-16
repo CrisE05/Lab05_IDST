@@ -153,7 +153,7 @@ if __name__ == '__main__':
     args = parse_args()
 
     # Check for token from command-line arguments or environment variable
-    token = args.token or os.getenv('BOT_TOKEN')
+    #token = args.token or os.getenv('BOT_TOKEN')
     if not token:
         log_msg('save your token in the BOT_TOKEN env variable or pass it with -t/--token!', 'error')
         exit(-1)
